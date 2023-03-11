@@ -1,3 +1,3 @@
-module alog
+module algo
 
 go 1.20
