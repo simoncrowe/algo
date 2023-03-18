@@ -2,5 +2,6 @@ package union_find
 
 type UnionFind interface {
 	Union(int, int)
-	Find(int, int) bool
+	Find(int) int
+	Count() int
 }

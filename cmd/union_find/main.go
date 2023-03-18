@@ -24,12 +24,18 @@ func main() {
 		os.Exit(1)
 	}
 	ids_count := int(count)
-		fmt.Println("Ids count:", ids_count)
-		
-	var algo union_find.UnionFind
-	switch algoName := args[0]; algoName {
+
+	var uf union_find.UnionFind
+	switch algo := args[0]; algo {
 	case "QuickFind":
-		algo = union_find.NewQuickFind(ids_count)
+		qf := union_find.NewQuickFind(ids_count)
+		uf = &qf
+	case "QuickUnion":
+		qu := union_find.NewQuickUnion(ids_count)
+		uf = &qu
+	case "WeightedQuickUnion":
+		wqu := union_find.NewWeightedQuickUnion(ids_count)
+		uf = &wqu
 	}
 
 	for scanner.Scan() {
@@ -44,9 +50,14 @@ func main() {
 		if err != nil {
 			fmt.Println("Error loading second id:", err)
 			os.Exit(1)
-		} 
+		}
 		q := int(idTwo)
-		algo.Union(p, q)
+		if uf.Find(p) == uf.Find(q) {
+			continue
+		}
+		uf.Union(p, q)
+		fmt.Println(p, q)
 	}
+	fmt.Println(uf.Count(), "components")
 
 }
