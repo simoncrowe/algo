@@ -36,6 +36,9 @@ func main() {
 	case "WeightedQuickUnion":
 		wqu := union_find.NewWeightedQuickUnion(ids_count)
 		uf = &wqu
+	case "WeightedQuickUnionWithPathCompression":
+		wqu := union_find.NewWeightedQuickUnionPathComp(ids_count)
+		uf = &wqu
 	}
 
 	for scanner.Scan() {
