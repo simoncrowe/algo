@@ -1,4 +1,4 @@
-Algoriths cam be run like so:
+Algorithms cam be run like so:
 ```shell
 cat ~/Downloads/largeUF.txt | time go run ./cmd/union_find WeightedQuickUnion
 ```
