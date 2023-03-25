@@ -6,7 +6,7 @@ type WeightedQuickUnion struct {
 	componentCount int
 }
 
-func NewWeightedQuickUnion(idCount int) WeightedQuickUnion {
+func NewWeightedQuickUnion(idCount int) *WeightedQuickUnion {
 	var parents []int = make([]int, idCount)
 	for i := 0; i < idCount; i++ {
 		parents[i] = i
@@ -15,7 +15,7 @@ func NewWeightedQuickUnion(idCount int) WeightedQuickUnion {
 	for i := 0; i < idCount; i++ {
 		sizes[i] = 1
 	}
-	return WeightedQuickUnion{parents: parents, treeSizes: sizes, componentCount: idCount}
+	return &WeightedQuickUnion{parents: parents, treeSizes: sizes, componentCount: idCount}
 }
 
 func (qu *WeightedQuickUnion) Union(p int, q int) {
