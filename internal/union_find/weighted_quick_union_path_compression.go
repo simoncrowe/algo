@@ -6,7 +6,7 @@ type WeightedQuickUnionPathComp struct {
 	componentCount int
 }
 
-func NewWeightedQuickUnionPathComp(idCount int) WeightedQuickUnionPathComp {
+func NewWeightedQuickUnionPathComp(idCount int) *WeightedQuickUnionPathComp {
 	var parents []int = make([]int, idCount)
 	for i := 0; i < idCount; i++ {
 		parents[i] = i
@@ -15,7 +15,7 @@ func NewWeightedQuickUnionPathComp(idCount int) WeightedQuickUnionPathComp {
 	for i := 0; i < idCount; i++ {
 		sizes[i] = 1
 	}
-	return WeightedQuickUnionPathComp{parents: parents, treeSizes: sizes, componentCount: idCount}
+	return &WeightedQuickUnionPathComp{parents: parents, treeSizes: sizes, componentCount: idCount}
 }
 
 func (qu *WeightedQuickUnionPathComp) Union(p int, q int) {

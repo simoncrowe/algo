@@ -5,12 +5,12 @@ type QuickUnion struct {
 	componentCount int
 }
 
-func NewQuickUnion(idCount int) QuickUnion {
+func NewQuickUnion(idCount int) *QuickUnion {
 	var parents []int = make([]int, idCount)
 	for i := 0; i < idCount; i++ {
 		parents[i] = i
 	}
-	return QuickUnion{parents: parents, componentCount: idCount}
+	return &QuickUnion{parents: parents, componentCount: idCount}
 }
 
 func (qu *QuickUnion) Union(p int, q int) {

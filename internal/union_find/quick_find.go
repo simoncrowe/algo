@@ -5,12 +5,12 @@ type QuickFind struct {
 	componentCount int
 }
 
-func NewQuickFind(idCount int) QuickFind {
+func NewQuickFind(idCount int) *QuickFind {
 	var ids []int = make([]int, idCount)
 	for i := 0; i < idCount; i++ {
 		ids[i] = i
 	}
-	return QuickFind{ids: ids, componentCount: idCount}
+	return &QuickFind{ids: ids, componentCount: idCount}
 }
 
 func (qf *QuickFind) Union(p int, q int) {

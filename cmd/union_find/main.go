@@ -28,17 +28,13 @@ func main() {
 	var uf union_find.UnionFind
 	switch algo := args[0]; algo {
 	case "QuickFind":
-		qf := union_find.NewQuickFind(ids_count)
-		uf = &qf
+		uf = union_find.NewQuickFind(ids_count)
 	case "QuickUnion":
-		qu := union_find.NewQuickUnion(ids_count)
-		uf = &qu
+		uf = union_find.NewQuickUnion(ids_count)
 	case "WeightedQuickUnion":
-		wqu := union_find.NewWeightedQuickUnion(ids_count)
-		uf = &wqu
+		uf = union_find.NewWeightedQuickUnion(ids_count)
 	case "WeightedQuickUnionWithPathCompression":
-		wqu := union_find.NewWeightedQuickUnionPathComp(ids_count)
-		uf = &wqu
+		uf = union_find.NewWeightedQuickUnionPathComp(ids_count)
 	}
 
 	for scanner.Scan() {
