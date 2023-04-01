@@ -35,6 +35,9 @@ func main() {
 		uf = union_find.NewWeightedQuickUnion(ids_count)
 	case "WeightedQuickUnionWithPathCompression":
 		uf = union_find.NewWeightedQuickUnionPathComp(ids_count)
+	default:
+		fmt.Println("Unknown Union-Find algorithm:", algo)
+		os.Exit(1)
 	}
 
 	for scanner.Scan() {
