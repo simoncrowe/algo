@@ -1,4 +1,9 @@
-Algorithms cam be run like so:
+To run unit tests:
+```shell
+ go test algo/internal/sorting
+```
+
+Algorithms cam be run on like so:
 ```shell
 cat ~/Downloads/largeUF.txt | time go run ./cmd/union_find WeightedQuickUnion
 ```
