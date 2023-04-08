@@ -14,6 +14,7 @@ func TestSelection(t *testing.T) {
 		{"Binary Insertion Sort", BinaryInsertionSort},
 		{"Shell Sort", ShellSort},
 		{"Merge Sort", MergeSort},
+		{"Bottom-Up Merge Sort", MergeSortBottomUp},
 	}
 
 	for _, tc := range testCases {

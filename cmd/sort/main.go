@@ -26,6 +26,8 @@ func main() {
 		sortFunc = sorting.ShellSort
 	case "Merge":
 		sortFunc = sorting.MergeSort
+	case "MergeBottomUp":
+		sortFunc = sorting.MergeSortBottomUp
 	default:
 		fmt.Println("Unknown sorting algorithm", algo)
 		os.Exit(1)
