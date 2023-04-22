@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestSelection(t *testing.T) {
+func TestImplementations(t *testing.T) {
 	testCases := []struct {
 		Name     string
 		SortFunc func(SortableStrings)
@@ -15,6 +15,7 @@ func TestSelection(t *testing.T) {
 		{"Shell Sort", ShellSort},
 		{"Merge Sort", MergeSort},
 		{"Bottom-Up Merge Sort", MergeSortBottomUp},
+		{"Quick Sort", QuickSort},
 	}
 
 	for _, tc := range testCases {

@@ -28,6 +28,8 @@ func main() {
 		sortFunc = sorting.MergeSort
 	case "MergeBottomUp":
 		sortFunc = sorting.MergeSortBottomUp
+	case "Quick":
+		sortFunc = sorting.QuickSort
 	default:
 		fmt.Println("Unknown sorting algorithm", algo)
 		os.Exit(1)
