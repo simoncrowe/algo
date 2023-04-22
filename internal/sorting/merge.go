@@ -2,16 +2,16 @@ package sorting
 
 func MergeSort(data SortableStrings) {
 	aux := make([]string, data.Len())
-	sort(data, aux, 0, data.Len()-1)
+	mergeSort(data, aux, 0, data.Len()-1)
 }
 
-func sort(data SortableStrings, aux []string, lo int, hi int) {
+func mergeSort(data SortableStrings, aux []string, lo int, hi int) {
 	if hi <= lo {
 		return
 	}
 	mid := lo + (hi-lo)/2
-	sort(data, aux, lo, mid)
-	sort(data, aux, mid+1, hi)
+	mergeSort(data, aux, lo, mid)
+	mergeSort(data, aux, mid+1, hi)
 	merge(data, aux, lo, mid, hi)
 }
 
