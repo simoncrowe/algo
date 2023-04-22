@@ -30,6 +30,8 @@ func main() {
 		sortFunc = sorting.MergeSortBottomUp
 	case "Quick":
 		sortFunc = sorting.QuickSort
+	case "QuickThreeWay":
+		sortFunc = sorting.QuickSortThreeWay
 	default:
 		fmt.Println("Unknown sorting algorithm", algo)
 		os.Exit(1)
