@@ -51,24 +51,24 @@ func (pq *MaxPriorityQueue) DelMax() string {
 	return max
 }
 
-func (pq *MaxPriorityQueue) Sink(k int) {
-	for 2*k <= pq.n {
-		j := 2 * k
-		if j < pq.n && pq.less(j, j+1) {
-			j++
+func (pq *MaxPriorityQueue) Sink(node_idx int) {
+	for 2*node_idx <= pq.n {
+		child_idx := 2 * node_idx
+		if child_idx < pq.n && pq.less(child_idx, child_idx+1) {
+			child_idx++
 		}
-		if !pq.less(k, j) {
+		if !pq.less(node_idx, child_idx) {
 			break
 		}
-		pq.swap(k, j)
-		k = j
+		pq.swap(node_idx, child_idx)
+		node_idx = child_idx
 	}
 }
 
-func (pq *MaxPriorityQueue) Swim(k int) {
-	for k > 1 && pq.less(k/2, k) {
-		pq.swap(k/2, k)
-		k = k / 2
+func (pq *MaxPriorityQueue) Swim(node_idx int) {
+	for node_idx > 1 && pq.less(node_idx/2, node_idx) {
+		pq.swap(node_idx/2, node_idx)
+		node_idx = node_idx / 2
 	}
 }
 
