@@ -17,6 +17,7 @@ func TestImplementations(t *testing.T) {
 		{"Bottom-Up Merge Sort", MergeSortBottomUp},
 		{"Quick Sort", QuickSort},
 		{"Three-Way Quick Sort", QuickSortThreeWay},
+		{"Heap Sort", HeapSort},
 	}
 
 	for _, tc := range testCases {

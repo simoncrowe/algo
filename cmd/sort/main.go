@@ -32,6 +32,8 @@ func main() {
 		sortFunc = sorting.QuickSort
 	case "QuickThreeWay":
 		sortFunc = sorting.QuickSortThreeWay
+	case "Heap":
+		sortFunc = sorting.HeapSort
 	default:
 		fmt.Println("Unknown sorting algorithm", algo)
 		os.Exit(1)
