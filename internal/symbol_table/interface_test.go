@@ -11,6 +11,7 @@ func TestSize(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -35,6 +36,7 @@ func TestIsEmpty(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -52,6 +54,7 @@ func TestPutAndGet(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -77,6 +80,7 @@ func TestDeleteFirst(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -106,6 +110,7 @@ func TestDeleteMiddle(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -139,6 +144,7 @@ func TestDeleteEnd(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -168,6 +174,7 @@ func TestContains(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
@@ -193,6 +200,7 @@ func TestKeys(t *testing.T) {
 		impl Interface
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
+		{"BinarySearch", NewBinarySearch()},
 	}
 
 	for _, tc := range testCases {
