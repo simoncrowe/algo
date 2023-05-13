@@ -19,12 +19,14 @@ func main() {
 	switch algo := args[0]; algo {
 	case "SequentialSearch":
 		table = symbol_table.NewSequentialSearch()
+	case "BinarySearch":
+		table = symbol_table.NewBinarySearch()
 	default:
 		fmt.Println("Unknown symbol table search algorithm", algo)
 		os.Exit(1)
 	}
 	distinct, words := 0, 0
-	
+
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		key := scanner.Text()
@@ -32,22 +34,22 @@ func main() {
 			words++
 			if table.Contains(word) {
 				count, err := table.Get(word)
-				if err != nil{
+				if err != nil {
 					panic("Key contained but not found")
 				}
-				table.Put(word, count + 1)
+				table.Put(word, count+1)
 			} else {
 				table.Put(word, 1)
 				distinct++
 			}
 		}
 	}
-	
+
 	var max string
 	max = ""
 	table.Put(max, 0)
 	for _, key := range table.Keys() {
-		currentMax, err :=  table.Get(max)
+		currentMax, err := table.Get(max)
 		if err != nil {
 			panic("Key expected but not found")
 		}
@@ -59,7 +61,7 @@ func main() {
 			max = key
 		}
 	}
-	fmt.Println("Key count: ", table.Size())		
+	fmt.Println("Key count: ", table.Size())
 	maxCount, err := table.Get(max)
 	if err != nil {
 		msg := fmt.Sprintf("Expected key not found: '%s'", max)
