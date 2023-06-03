@@ -2,6 +2,7 @@ package symbol_table
 
 import (
 	"errors"
+	"algo/internal/queue"
 )
 
 type TreeNode struct {
@@ -46,7 +47,29 @@ func (st BinarySearchTree) IsEmpty() bool {
 }
 
 func (st BinarySearchTree) Keys() []string {
-	return []string{"not", "implemented"}
+	q := queue.NewStringQueue()
+	if st.root == nil {
+		return q.Data()
+	}
+	lo := min(st.root).key
+	hi := max(st.root).key
+	keys(st.root, q, lo, hi)
+	return q.Data()
+}
+
+func keys(x *TreeNode, q *queue.StringQueue, lo string, hi string) {
+	if x == nil {
+		return
+	}
+	if x.key > lo {
+		keys(x.left, q, lo, hi)
+	}
+	if x.key >= lo && x.key <= hi {
+		q.Enqueue(x.key)
+	}
+	if x.key < hi {
+		keys(x.right, q, lo, hi)
+	}
 }
 
 func (st BinarySearchTree) Get(key string) (int, error) {
@@ -127,6 +150,14 @@ func min(x *TreeNode) *TreeNode {
 		return x
 	} else {
 		return min(x.left)
+	}
+}
+
+func max(x *TreeNode) *TreeNode {
+	if x.right == nil {
+		return x
+	} else {
+		return max(x.right)
 	}
 }
 

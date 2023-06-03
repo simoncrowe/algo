@@ -227,7 +227,7 @@ func TestKeys(t *testing.T) {
 				keySet[keys[i]] = true
 			}
 			if !reflect.DeepEqual(keySet, wordSet) {
-				t.Errorf("%s: The result of Keys is not equal to the keys pushed", tc.name)
+				t.Errorf("%s: The result of Keys (%v) is not equal to the keys pushed (%v)", tc.name, keySet, wordSet)
 			}
 
 		})
