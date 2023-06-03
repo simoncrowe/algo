@@ -71,6 +71,7 @@ func (st *BinarySearch) Put(key string, value int) {
 
 	if i < st.n && st.keys[i] == key {
 		st.values[i] = value
+		return
 	}
 
 	if st.n == len(st.keys) {
