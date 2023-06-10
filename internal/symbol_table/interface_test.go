@@ -12,6 +12,7 @@ func TestSize(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -37,6 +38,7 @@ func TestIsEmpty(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -55,6 +57,7 @@ func TestPutAndGet(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -81,6 +84,7 @@ func TestDeleteFirst(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -111,6 +115,7 @@ func TestDeleteMiddle(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -145,6 +150,7 @@ func TestDeleteEnd(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -175,6 +181,7 @@ func TestContains(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -201,6 +208,7 @@ func TestKeys(t *testing.T) {
 	}{
 		{"SequentialSearch", NewSequentialSearch()},
 		{"BinarySearch", NewBinarySearch()},
+		{"BinarySearchTree", NewBinarySearchTree()},
 	}
 
 	for _, tc := range testCases {
@@ -219,7 +227,7 @@ func TestKeys(t *testing.T) {
 				keySet[keys[i]] = true
 			}
 			if !reflect.DeepEqual(keySet, wordSet) {
-				t.Errorf("%s: The result of Keys is not equal to the keys pushed", tc.name)
+				t.Errorf("%s: The result of Keys (%v) is not equal to the keys pushed (%v)", tc.name, keySet, wordSet)
 			}
 
 		})

@@ -21,6 +21,8 @@ func main() {
 		table = symbol_table.NewSequentialSearch[string, int]()
 	case "BinarySearch":
 		table = symbol_table.NewBinarySearch()
+	case "BinarySearchTree":
+		table = symbol_table.NewBinarySearchTree()
 	default:
 		fmt.Println("Unknown symbol table search algorithm", algo)
 		os.Exit(1)

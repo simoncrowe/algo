@@ -4,15 +4,15 @@ import (
 	"errors"
 )
 
-type Node[K comparable, V any] struct {
+type ListNode[K comparable, V any] struct {
 	key   K
 	value V
-	next  *Node[K, V]
+	next  *ListNode[K, V]
 }
 
 type SequentialSearch[K comparable, V any] struct {
 	n     int
-	first *Node[K, V]
+	first *ListNode[K, V]
 }
 
 func NewSequentialSearch[K comparable, V any]() *SequentialSearch[K, V] {
@@ -49,7 +49,7 @@ func (st *SequentialSearch[K, V]) Put(key K, value V) {
 		}
 		node = node.next
 	}
-	st.first = &Node[K, V]{key: key, value: value, next: st.first}
+	st.first = &ListNode[K, V]{key: key, value: value, next: st.first}
 	st.n++
 }
 
