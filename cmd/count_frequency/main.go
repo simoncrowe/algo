@@ -15,10 +15,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	var table symbol_table.Interface
+	var table symbol_table.Interface[string, int]
 	switch algo := args[0]; algo {
 	case "SequentialSearch":
-		table = symbol_table.NewSequentialSearch()
+		table = symbol_table.NewSequentialSearch[string, int]()
 	case "BinarySearch":
 		table = symbol_table.NewBinarySearch()
 	default:
