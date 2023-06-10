@@ -20,7 +20,7 @@ func main() {
 	case "SequentialSearch":
 		table = symbol_table.NewSequentialSearch[string, int]()
 	case "BinarySearch":
-		table = symbol_table.NewBinarySearch()
+		table = symbol_table.NewBinarySearch[string, int]()
 	case "BinarySearchTree":
 		table = symbol_table.NewBinarySearchTree()
 	default:
