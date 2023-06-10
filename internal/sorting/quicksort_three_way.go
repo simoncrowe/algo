@@ -15,25 +15,24 @@ func quickSortThreeWay(data SortableStrings, lo int, hi int) {
 	if hi <= lo {
 		return
 	}
-	
+
 	lt, gt := lo, hi
 	pivot := data[lo]
 	i := lo + 1
-	
-	for (i <= gt) {
+
+	for i <= gt {
 		if data[i] < pivot {
 			data.Swap(lt, i)
-			lt ++
-			i ++
+			lt++
+			i++
 		} else if data[i] > pivot {
 			data.Swap(i, gt)
-			gt --
+			gt--
 		} else {
-			i ++ 
+			i++
 		}
 	}
 
 	quickSortThreeWay(data, lo, lt-1)
 	quickSortThreeWay(data, gt+1, hi)
 }
-

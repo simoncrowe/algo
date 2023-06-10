@@ -6,7 +6,7 @@ import (
 )
 
 type BinarySearch[K constraints.Ordered, V any] struct {
-	n      int 
+	n      int
 	keys   []K
 	values []V
 }
@@ -49,7 +49,7 @@ func (st BinarySearch[K, V]) Get(key K) (V, error) {
 	if i < st.n && st.keys[i] == key {
 		return st.values[i], nil
 	}
-	
+
 	var nothing V
 	return nothing, errors.New("Key not found")
 }

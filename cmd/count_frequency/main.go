@@ -22,7 +22,7 @@ func main() {
 	case "BinarySearch":
 		table = symbol_table.NewBinarySearch[string, int]()
 	case "BinarySearchTree":
-		table = symbol_table.NewBinarySearchTree()
+		table = symbol_table.NewBinarySearchTree[string, int]()
 	default:
 		fmt.Println("Unknown symbol table search algorithm", algo)
 		os.Exit(1)
