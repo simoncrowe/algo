@@ -4,31 +4,31 @@ import (
 	"errors"
 )
 
-type ListNode struct {
-	key   string
-	value int
-	next  *ListNode
+type ListNode[K comparable, V any] struct {
+	key   K
+	value V
+	next  *ListNode[K, V]
 }
 
-type SequentialSearch struct {
+type SequentialSearch[K comparable, V any] struct {
 	n     int
-	first *ListNode
+	first *ListNode[K, V]
 }
 
-func NewSequentialSearch() *SequentialSearch {
-	return &SequentialSearch{n: 0, first: nil}
+func NewSequentialSearch[K comparable, V any]() *SequentialSearch[K, V] {
+	return &SequentialSearch[K, V]{n: 0, first: nil}
 }
 
-func (st SequentialSearch) Size() int {
+func (st SequentialSearch[K, V]) Size() int {
 	return st.n
 }
 
-func (st SequentialSearch) IsEmpty() bool {
+func (st SequentialSearch[K, V]) IsEmpty() bool {
 	return st.n == 0
 }
 
-func (st SequentialSearch) Keys() []string {
-	keys := make([]string, st.Size())
+func (st SequentialSearch[K, V]) Keys() []K {
+	keys := make([]K, st.Size())
 	node := st.first
 	for i := 0; i < st.Size(); i++ {
 		keys[i] = node.key
@@ -37,7 +37,7 @@ func (st SequentialSearch) Keys() []string {
 	return keys
 }
 
-func (st *SequentialSearch) Put(key string, value int) {
+func (st *SequentialSearch[K, V]) Put(key K, value V) {
 	node := st.first
 	for {
 		if node == nil {
@@ -49,11 +49,11 @@ func (st *SequentialSearch) Put(key string, value int) {
 		}
 		node = node.next
 	}
-	st.first = &ListNode{key: key, value: value, next: st.first}
+	st.first = &ListNode[K, V]{key: key, value: value, next: st.first}
 	st.n++
 }
 
-func (st SequentialSearch) Get(key string) (int, error) {
+func (st SequentialSearch[K, V]) Get(key K) (V, error) {
 	node := st.first
 	for {
 		if node == nil {
@@ -64,15 +64,16 @@ func (st SequentialSearch) Get(key string) (int, error) {
 		}
 		node = node.next
 	}
-	return 0, errors.New("Key not found")
+	var nothing V
+	return nothing, errors.New("Key not found")
 }
 
-func (st SequentialSearch) Contains(key string) bool {
+func (st SequentialSearch[K, V]) Contains(key K) bool {
 	_, err := st.Get(key)
 	return err == nil
 }
 
-func (st *SequentialSearch) Delete(key string) {
+func (st *SequentialSearch[K, V]) Delete(key K) {
 	if st == nil || st.first == nil {
 		return
 	}

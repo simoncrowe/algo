@@ -4,33 +4,33 @@ import (
 	"errors"
 )
 
-type StringQueue struct {
-    items []string
+type Queue[T any] struct {
+	items []T
 }
 
-func NewStringQueue() *StringQueue {
-	items := []string{}
-	return &StringQueue{items: items}
+func NewQueue[T any]() *Queue[T] {
+	items := []T{}
+	return &Queue[T]{items: items}
 }
 
-func (q *StringQueue) Enqueue(item string) {
-    q.items = append(q.items, item)
+func (q *Queue[T]) Enqueue(item T) {
+	q.items = append(q.items, item)
 }
 
-func (q *StringQueue) Dequeue() (string, error) {
-    if len(q.items) == 0 {
-        return "", errors.New("Queue is empty")
-    }
-    item := q.items[0]
-    q.items = q.items[1:]
-    return item, nil
+func (q *Queue[T]) Dequeue() (T, error) {
+	if len(q.items) == 0 {
+		var nothing T
+		return nothing, errors.New("Queue is empty")
+	}
+	item := q.items[0]
+	q.items = q.items[1:]
+	return item, nil
 }
 
-func (q *StringQueue) Size() int {
-    return len(q.items)
+func (q *Queue[T]) Size() int {
+	return len(q.items)
 }
 
-
-func (q *StringQueue) Data() []string {
-    return q.items
+func (q *Queue[T]) Data() []T {
+	return q.items
 }

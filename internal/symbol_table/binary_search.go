@@ -2,23 +2,24 @@ package symbol_table
 
 import (
 	"errors"
+	"golang.org/x/exp/constraints"
 )
 
-type BinarySearch struct {
+type BinarySearch[K constraints.Ordered, V any] struct {
 	n      int
-	keys   []string
-	values []int
+	keys   []K
+	values []V
 }
 
-func NewBinarySearch() *BinarySearch {
-	keys := make([]string, 4096)
-	values := make([]int, 4096)
-	return &BinarySearch{keys: keys, values: values, n: 0}
+func NewBinarySearch[K constraints.Ordered, V any]() *BinarySearch[K, V] {
+	keys := make([]K, 4096)
+	values := make([]V, 4096)
+	return &BinarySearch[K, V]{keys: keys, values: values, n: 0}
 }
 
-func (st *BinarySearch) resize(capacity int) {
-	newKeys := make([]string, capacity)
-	newValues := make([]int, capacity)
+func (st *BinarySearch[K, V]) resize(capacity int) {
+	newKeys := make([]K, capacity)
+	newValues := make([]V, capacity)
 	for i := 0; i < st.n; i++ {
 		newKeys[i] = st.keys[i]
 		newValues[i] = st.values[i]
@@ -27,31 +28,33 @@ func (st *BinarySearch) resize(capacity int) {
 	st.keys = newKeys
 }
 
-func (st BinarySearch) Size() int {
+func (st BinarySearch[K, V]) Size() int {
 	return st.n
 }
 
-func (st BinarySearch) IsEmpty() bool {
+func (st BinarySearch[K, V]) IsEmpty() bool {
 	return st.n == 0
 }
 
-func (st BinarySearch) Keys() []string {
+func (st BinarySearch[K, V]) Keys() []K {
 	return st.keys[:st.n]
 }
 
-func (st BinarySearch) Get(key string) (int, error) {
+func (st BinarySearch[K, V]) Get(key K) (V, error) {
 	if st.IsEmpty() {
-		return 0, errors.New("Key not found")
+		var nothing V
+		return nothing, errors.New("Key not found")
 	}
 	i := st.search(key)
 	if i < st.n && st.keys[i] == key {
 		return st.values[i], nil
 	}
 
-	return 0, errors.New("Key not found")
+	var nothing V
+	return nothing, errors.New("Key not found")
 }
 
-func (st BinarySearch) search(key string) int {
+func (st BinarySearch[K, V]) search(key K) int {
 	lo, hi := 0, st.n-1
 	for lo <= hi {
 		mid := lo + (hi-lo)/2
@@ -66,7 +69,7 @@ func (st BinarySearch) search(key string) int {
 	return lo
 }
 
-func (st *BinarySearch) Put(key string, value int) {
+func (st *BinarySearch[K, V]) Put(key K, value V) {
 	i := st.search(key)
 
 	if i < st.n && st.keys[i] == key {
@@ -87,12 +90,12 @@ func (st *BinarySearch) Put(key string, value int) {
 	st.n++
 }
 
-func (st BinarySearch) Contains(key string) bool {
+func (st BinarySearch[K, V]) Contains(key K) bool {
 	_, err := st.Get(key)
 	return err == nil
 }
 
-func (st *BinarySearch) Delete(key string) {
+func (st *BinarySearch[K, V]) Delete(key K) {
 	i := st.search(key)
 
 	if i < st.n && st.keys[i] != key {

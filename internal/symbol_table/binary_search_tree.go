@@ -1,20 +1,21 @@
 package symbol_table
 
 import (
-	"errors"
 	"algo/internal/queue"
+	"errors"
+	"golang.org/x/exp/constraints"
 )
 
-type TreeNode struct {
-	key   string
-	val   int
-	left  *TreeNode
-	right *TreeNode
+type TreeNode[K constraints.Ordered, V any] struct {
+	key   K
+	val   V
+	left  *TreeNode[K, V]
+	right *TreeNode[K, V]
 	size  int
 }
 
-func newTreeNode(key string, val int, size int) *TreeNode {
-	return &TreeNode{
+func newTreeNode[K constraints.Ordered, V any](key K, val V, size int) *TreeNode[K, V] {
+	return &TreeNode[K, V]{
 		key:   key,
 		val:   val,
 		left:  nil,
@@ -23,31 +24,31 @@ func newTreeNode(key string, val int, size int) *TreeNode {
 	}
 }
 
-type BinarySearchTree struct {
-	root *TreeNode
+type BinarySearchTree[K constraints.Ordered, V any] struct {
+	root *TreeNode[K, V]
 }
 
-func NewBinarySearchTree() *BinarySearchTree {
-	return &BinarySearchTree{root: nil}
+func NewBinarySearchTree[K constraints.Ordered, V any]() *BinarySearchTree[K, V] {
+	return &BinarySearchTree[K, V]{root: nil}
 }
 
-func (st BinarySearchTree) Size() int {
+func (st BinarySearchTree[K, V]) Size() int {
 	return size(st.root)
 }
 
-func size(x *TreeNode) int {
+func size[K constraints.Ordered, V any](x *TreeNode[K, V]) int {
 	if x == nil {
 		return 0
 	}
 	return x.size
 }
 
-func (st BinarySearchTree) IsEmpty() bool {
+func (st BinarySearchTree[K, V]) IsEmpty() bool {
 	return st.root == nil
 }
 
-func (st BinarySearchTree) Keys() []string {
-	q := queue.NewStringQueue()
+func (st BinarySearchTree[K, V]) Keys() []K {
+	q := queue.NewQueue[K]()
 	if st.root == nil {
 		return q.Data()
 	}
@@ -57,7 +58,7 @@ func (st BinarySearchTree) Keys() []string {
 	return q.Data()
 }
 
-func keys(x *TreeNode, q *queue.StringQueue, lo string, hi string) {
+func keys[K constraints.Ordered, V any](x *TreeNode[K, V], q *queue.Queue[K], lo K, hi K) {
 	if x == nil {
 		return
 	}
@@ -72,17 +73,19 @@ func keys(x *TreeNode, q *queue.StringQueue, lo string, hi string) {
 	}
 }
 
-func (st BinarySearchTree) Get(key string) (int, error) {
+func (st BinarySearchTree[K, V]) Get(key K) (V, error) {
 	val, err := get(st.root, key)
 	if err != nil {
-		return 0, errors.New("Key not found")
+		var nothing V
+		return nothing, errors.New("Key not found")
 	}
 	return val, nil
 }
 
-func get(x *TreeNode, key string) (int, error) {
+func get[K constraints.Ordered, V any](x *TreeNode[K, V], key K) (V, error) {
 	if x == nil {
-		return 0, errors.New("Null node")
+		var nothing V
+		return nothing, errors.New("Null node")
 	}
 	if key < x.key {
 		return get(x.left, key)
@@ -93,11 +96,11 @@ func get(x *TreeNode, key string) (int, error) {
 	return x.val, nil
 }
 
-func (st *BinarySearchTree) Put(key string, val int) {
+func (st *BinarySearchTree[K, V]) Put(key K, val V) {
 	st.root = put(st.root, key, val)
 }
 
-func put(x *TreeNode, key string, val int) *TreeNode {
+func put[K constraints.Ordered, V any](x *TreeNode[K, V], key K, val V) *TreeNode[K, V] {
 	if x == nil {
 		return newTreeNode(key, val, 1)
 	}
@@ -112,16 +115,16 @@ func put(x *TreeNode, key string, val int) *TreeNode {
 	return x
 }
 
-func (st *BinarySearchTree) Contains(key string) bool {
+func (st *BinarySearchTree[K, V]) Contains(key K) bool {
 	_, err := st.Get(key)
 	return err == nil
 }
 
-func (st *BinarySearchTree) Delete(key string) {
+func (st *BinarySearchTree[K, V]) Delete(key K) {
 	st.root = delete(st.root, key)
 }
 
-func delete(x *TreeNode, key string) *TreeNode {
+func delete[K constraints.Ordered, V any](x *TreeNode[K, V], key K) *TreeNode[K, V] {
 	if x == nil {
 		return nil
 	}
@@ -145,7 +148,7 @@ func delete(x *TreeNode, key string) *TreeNode {
 	return x
 }
 
-func min(x *TreeNode) *TreeNode {
+func min[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.left == nil {
 		return x
 	} else {
@@ -153,7 +156,7 @@ func min(x *TreeNode) *TreeNode {
 	}
 }
 
-func max(x *TreeNode) *TreeNode {
+func max[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.right == nil {
 		return x
 	} else {
@@ -161,7 +164,7 @@ func max(x *TreeNode) *TreeNode {
 	}
 }
 
-func deleteMin(x *TreeNode) *TreeNode {
+func deleteMin[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.left == nil {
 		return x.right
 	}

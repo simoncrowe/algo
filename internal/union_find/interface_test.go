@@ -33,7 +33,6 @@ func TestUnionAndFind(t *testing.T) {
 	}
 }
 
-
 func TestCount(t *testing.T) {
 	testCases := []struct {
 		name string
@@ -50,14 +49,14 @@ func TestCount(t *testing.T) {
 			tc.impl.Union(0, 1)
 			tc.impl.Union(1, 2)
 			tc.impl.Union(2, 3)
-			
+
 			tc.impl.Union(4, 5)
 			tc.impl.Union(5, 6)
-			
+
 			// 7 remains un-connected
 
 			tc.impl.Union(8, 9)
-			
+
 			count := tc.impl.Count()
 			if count != 4 {
 				t.Errorf("Expected four connected components, got %d", count)

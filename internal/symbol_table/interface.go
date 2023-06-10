@@ -1,11 +1,11 @@
 package symbol_table
 
-type Interface interface {
+type Interface[K comparable, V any] interface {
 	Size() int
 	IsEmpty() bool
-	Put(string, int)
-	Get(string) (int, error)
-	Delete(string)
-	Contains(string) bool
-	Keys() []string
+	Put(K, V)
+	Get(K) (V, error)
+	Delete(K)
+	Contains(K) bool
+	Keys() []K
 }
