@@ -4,15 +4,15 @@ import (
 	"errors"
 )
 
-type Node struct {
+type ListNode struct {
 	key   string
 	value int
-	next  *Node
+	next  *ListNode
 }
 
 type SequentialSearch struct {
 	n     int
-	first *Node
+	first *ListNode
 }
 
 func NewSequentialSearch() *SequentialSearch {
@@ -49,7 +49,7 @@ func (st *SequentialSearch) Put(key string, value int) {
 		}
 		node = node.next
 	}
-	st.first = &Node{key: key, value: value, next: st.first}
+	st.first = &ListNode{key: key, value: value, next: st.first}
 	st.n++
 }
 
