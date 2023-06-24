@@ -8,11 +8,12 @@ import (
 func TestSize(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -34,11 +35,12 @@ func TestSize(t *testing.T) {
 func TestIsEmpty(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -53,11 +55,12 @@ func TestIsEmpty(t *testing.T) {
 func TestPutAndGet(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -80,11 +83,12 @@ func TestPutAndGet(t *testing.T) {
 func TestDeleteFirst(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -111,11 +115,12 @@ func TestDeleteFirst(t *testing.T) {
 func TestDeleteMiddle(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -146,11 +151,12 @@ func TestDeleteMiddle(t *testing.T) {
 func TestDeleteEnd(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -177,11 +183,12 @@ func TestDeleteEnd(t *testing.T) {
 func TestContains(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -204,11 +211,12 @@ func TestContains(t *testing.T) {
 func TestKeys(t *testing.T) {
 	testCases := []struct {
 		name string
-		impl Interface
+		impl Interface[string, int]
 	}{
-		{"SequentialSearch", NewSequentialSearch()},
-		{"BinarySearch", NewBinarySearch()},
-		{"BinarySearchTree", NewBinarySearchTree()},
+		{"SequentialSearch", NewSequentialSearch[string, int]()},
+		{"BinarySearch", NewBinarySearch[string, int]()},
+		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
+		{"RedBlackBST", NewRedBlackBST[string, int]()},
 	}
 
 	for _, tc := range testCases {
