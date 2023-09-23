@@ -25,6 +25,8 @@ func main() {
 		table = symbol_table.NewBinarySearchTree[string, int]()
 	case "RedBlackBST":
 		table = symbol_table.NewRedBlackBST[string, int]()
+	case "SeparateChainingHashTable":
+		table = symbol_table.NewSeparateChainingHashTable[string, int]()
 	default:
 		fmt.Println("Unknown symbol table search algorithm", algo)
 		os.Exit(1)

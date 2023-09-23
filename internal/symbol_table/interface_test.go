@@ -14,6 +14,7 @@ func TestSize(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -41,6 +42,7 @@ func TestIsEmpty(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -61,6 +63,7 @@ func TestPutAndGet(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -89,6 +92,7 @@ func TestDeleteFirst(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -121,6 +125,7 @@ func TestDeleteMiddle(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -157,6 +162,7 @@ func TestDeleteEnd(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -189,6 +195,7 @@ func TestContains(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -217,6 +224,7 @@ func TestKeys(t *testing.T) {
 		{"BinarySearch", NewBinarySearch[string, int]()},
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
+		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
