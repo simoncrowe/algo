@@ -2,7 +2,7 @@ package symbol_table
 
 import "github.com/dolthub/maphash"
 
-const InitialCapacity = 4
+const InitialCapacityST = 4
 
 type SeparateChainingHashTable[K comparable, V any] struct {
 	tables []SequentialSearch[K, V]
@@ -11,7 +11,7 @@ type SeparateChainingHashTable[K comparable, V any] struct {
 }
 
 func NewSeparateChainingHashTable[K comparable, V any]() *SeparateChainingHashTable[K, V] {
-	return newSeparateChainingHashTable[K, V](InitialCapacity)
+	return newSeparateChainingHashTable[K, V](InitialCapacityST)
 }
 
 func newSeparateChainingHashTable[K comparable, V any](size int) *SeparateChainingHashTable[K, V] {

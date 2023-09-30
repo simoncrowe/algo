@@ -15,6 +15,7 @@ func TestSize(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -43,6 +44,7 @@ func TestIsEmpty(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -64,6 +66,7 @@ func TestPutAndGet(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -93,6 +96,7 @@ func TestDeleteFirst(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -126,6 +130,7 @@ func TestDeleteMiddle(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -163,6 +168,7 @@ func TestDeleteEnd(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -196,6 +202,7 @@ func TestContains(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
@@ -225,6 +232,7 @@ func TestKeys(t *testing.T) {
 		{"BinarySearchTree", NewBinarySearchTree[string, int]()},
 		{"RedBlackBST", NewRedBlackBST[string, int]()},
 		{"SeparateChainingHashTable", NewSeparateChainingHashTable[string, int]()},
+		{"LinearProbingHashTable", NewLinearProbingHashTable[string, int]()},
 	}
 
 	for _, tc := range testCases {
