@@ -1,6 +1,10 @@
 package sorting
 
-func BinaryInsertionSort(data SortableStrings) {
+import (
+	"golang.org/x/exp/constraints"
+)
+
+func BinaryInsertionSort(data []constraints.Ordered) {
 	n := data.Len()
 	for i := 1; i < n; i++ {
 

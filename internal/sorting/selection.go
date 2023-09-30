@@ -1,6 +1,10 @@
 package sorting
 
-func SelectionSort(data SortableStrings) {
+import (
+	"golang.org/x/exp/constraints"
+)
+
+func SelectionSort(data []constraints.Ordered) {
 	n := data.Len()
 	for i := 0; i < n; i++ {
 		minIdx := i

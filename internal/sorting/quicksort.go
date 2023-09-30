@@ -1,17 +1,18 @@
 package sorting
 
 import (
+	"golang.org/x/exp/constraints"
 	"math/rand"
 	"time"
 )
 
-func QuickSort(data SortableStrings) {
+func QuickSort(data constraints.Ordered) {
 	rand.Seed(time.Now().UnixNano())
 	rand.Shuffle(data.Len(), data.Swap)
 	quickSort(data, 0, data.Len()-1)
 }
 
-func quickSort(data SortableStrings, lo int, hi int) {
+func quickSort(data []constraints.Ordered, lo int, hi int) {
 	if hi <= lo {
 		return
 	}
@@ -20,7 +21,7 @@ func quickSort(data SortableStrings, lo int, hi int) {
 	quickSort(data, j+1, hi)
 }
 
-func partition(data SortableStrings, lo int, hi int) int {
+func partition(data []constraints.Ordered, lo int, hi int) int {
 	i, j := lo, hi+1
 	pivot := data[lo]
 	for {

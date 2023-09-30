@@ -1,6 +1,10 @@
 package sorting
 
-func ShellSort(data SortableStrings) {
+import (
+	"golang.org/x/exp/constraints"
+)
+
+func ShellSort(data []constraints.Ordered) {
 	n := data.Len()
 
 	h := 1

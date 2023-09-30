@@ -1,15 +1,17 @@
 package sorting
 
-type SortableStrings []string
+import (
+	"golang.org/x/exp/constraints"
+)
 
-func (s SortableStrings) Len() int {
+func (s []constraints.Ordered) Len() int {
 	return len(s)
 }
 
-func (s SortableStrings) Less(i, j int) bool {
+func (s []constraints.Ordered) Less(i, j int) bool {
 	return s[i] < s[j]
 }
 
-func (s SortableStrings) Swap(i, j int) {
+func (s []constraints.Ordered) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }

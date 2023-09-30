@@ -1,11 +1,15 @@
 package sorting
 
-func MergeSort(data SortableStrings) {
+import (
+	"golang.org/x/exp/constraints"
+)
+
+func MergeSort(data constraints.Ordered) {
 	aux := make([]string, data.Len())
 	mergeSort(data, aux, 0, data.Len()-1)
 }
 
-func mergeSort(data SortableStrings, aux []string, lo int, hi int) {
+func mergeSort(data []constraints.Ordered, aux []string, lo int, hi int) {
 	if hi <= lo {
 		return
 	}
@@ -15,7 +19,7 @@ func mergeSort(data SortableStrings, aux []string, lo int, hi int) {
 	merge(data, aux, lo, mid, hi)
 }
 
-func merge(data SortableStrings, aux []string, lo int, mid int, hi int) {
+func merge(data []constraints.Ordered, aux []string, lo int, mid int, hi int) {
 	for k := lo; k <= hi; k++ {
 		aux[k] = data[k]
 	}

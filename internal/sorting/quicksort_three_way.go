@@ -1,17 +1,18 @@
 package sorting
 
 import (
+	"golang.org/x/exp/constraints"
 	"math/rand"
 	"time"
 )
 
-func QuickSortThreeWay(data SortableStrings) {
+func QuickSortThreeWay(data []constraints.Ordered) {
 	rand.Seed(time.Now().UnixNano())
 	rand.Shuffle(data.Len(), data.Swap)
 	quickSort(data, 0, data.Len()-1)
 }
 
-func quickSortThreeWay(data SortableStrings, lo int, hi int) {
+func quickSortThreeWay(data []constraints.Ordered, lo int, hi int) {
 	if hi <= lo {
 		return
 	}

@@ -1,13 +1,14 @@
 package sorting
 
 import (
+	"golang.org/x/exp/constraints"
 	"testing"
 )
 
 func TestImplementations(t *testing.T) {
 	testCases := []struct {
 		Name     string
-		SortFunc func(SortableStrings)
+		SortFunc func([]constraints.Ordered)
 	}{
 		{"Selection Sort", SelectionSort},
 		{"Insertion Sort", InsertionSort},
@@ -21,7 +22,7 @@ func TestImplementations(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		input := SortableStrings{"Dog", "Box", "Hat", "Elf", "Bog", "Fan", "Ink", "Cat"}
+		input := constraints.Ordered{"Dog", "Box", "Hat", "Elf", "Bog", "Fan", "Ink", "Cat"}
 
 		tc.SortFunc(input)
 

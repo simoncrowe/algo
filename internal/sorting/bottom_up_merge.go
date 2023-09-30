@@ -1,6 +1,10 @@
 package sorting
 
-func MergeSortBottomUp(data SortableStrings) {
+import (
+	"golang.org/x/exp/constraints"
+)
+
+func MergeSortBottomUp(data []constraints.Ordered) {
 	N := data.Len()
 	aux := make([]string, N)
 	for sz := 1; sz < N; sz = sz + sz {
