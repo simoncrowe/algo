@@ -27,6 +27,8 @@ func main() {
 		table = symbol_table.NewRedBlackBST[string, int]()
 	case "SeparateChainingHashTable":
 		table = symbol_table.NewSeparateChainingHashTable[string, int]()
+	case "LinearProbingHashTable":
+		table = symbol_table.NewLinearProbingHashTable[string, int]()
 	default:
 		fmt.Println("Unknown symbol table search algorithm", algo)
 		os.Exit(1)
