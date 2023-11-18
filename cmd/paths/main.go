@@ -2,12 +2,11 @@ package main
 
 import (
 	"algo/internal/graph"
-	"bpfio"
+	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
-	"strings"
 )
 
 func main() {
@@ -15,7 +14,7 @@ func main() {
 	if len(args) != 3 {
 		log.Fatalln("Expected three positional args: GRAPH_PATH ALGORITHM ORIGIN")
 	}
-	
+
 	path := args[0]
 	file, err := os.Open(path)
 	if err != nil {
@@ -24,15 +23,35 @@ func main() {
 	defer file.Close()
 
 	lines := bufio.NewScanner(file)
-	graph := graph.NewGraphFromStream(lines)
+	g := graph.NewGraphFromStream(lines)
 
-	var pf graph.Search 
+	parsedSource, err := strconv.ParseInt(args[2], 10, 32)
+	if err != nil {
+		log.Fatalln("Error parsing origin index as int: ", err)
+	}
+	source := int(parsedSource)
+
+	var paths graph.IPaths
 	switch algo := args[1]; algo {
 	case "DFS":
-		pf := graph.NewDepthFirstSearch(graph)
+		paths = graph.NewDepthFirstPaths(g, source)
 	default:
-		fmt.Println("Unknown graph pathfinding algorithm:", algo)
-		os.Exit(1)
+		log.Fatalln("Unknown graph pathfinding algorithm:", algo)
 	}
 
+	for v := 0; v < g.Verts(); v++ {
+		if paths.HasPathTo(v) {
+			fmt.Printf("%d to %d: ", source, v)
+			for x := range paths.PathTo(v) {
+				if x == source {
+					fmt.Print(x)
+				} else {
+					fmt.Printf("-%d", x)
+				}
+			}
+			fmt.Println()
+		} else {
+			fmt.Printf("%d to %d: not connected\n", source, v)
+		}
+	}
 }
