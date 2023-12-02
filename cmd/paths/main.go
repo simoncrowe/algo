@@ -25,11 +25,10 @@ func main() {
 	lines := bufio.NewScanner(file)
 	g := graph.NewGraphFromStream(lines)
 
-	parsedSource, err := strconv.ParseInt(args[2], 10, 32)
+	source, err := strconv.Atoi(args[2])
 	if err != nil {
 		log.Fatalln("Error parsing origin index as int: ", err)
 	}
-	source := int(parsedSource)
 
 	var paths graph.IPaths
 	switch algo := args[1]; algo {
@@ -42,7 +41,7 @@ func main() {
 	for v := 0; v < g.Verts(); v++ {
 		if paths.HasPathTo(v) {
 			fmt.Printf("%d to %d: ", source, v)
-			for x := range paths.PathTo(v) {
+			for _, x := range paths.PathTo(v) {
 				if x == source {
 					fmt.Print(x)
 				} else {

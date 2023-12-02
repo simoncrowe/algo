@@ -2,12 +2,12 @@ package graph
 
 import (
 	"log"
-	//"slices"
+	"slices"
 )
 
 type DepthFirstPaths struct {
 	marked []bool
-	edgeTo []int
+	edgeTo []*int
 	source int
 }
 
@@ -15,7 +15,7 @@ func NewDepthFirstPaths(g Graph, source int) DepthFirstPaths {
 	g.validateVertex(source)
 
 	marked := make([]bool, g.Verts())
-	edgeTo := make([]int, g.Verts())
+	edgeTo := make([]*int, g.Verts())
 	paths := DepthFirstPaths{marked: marked, edgeTo: edgeTo, source: source}
 	paths.dfs(g, source)
 	return paths
@@ -24,11 +24,11 @@ func NewDepthFirstPaths(g Graph, source int) DepthFirstPaths {
 func (paths *DepthFirstPaths) dfs(g Graph, v int) {
 	paths.validateVertex(v)
 	paths.marked[v] = true
-	for w := range g.Adj(v) {
+	for _, w := range g.Adj(v) {
 		if !paths.marked[w] {
-			paths.edgeTo[w] = v
+			paths.edgeTo[w] = &v
 			paths.dfs(g, w)
-		}
+		} 
 	}
 }
 
@@ -44,12 +44,12 @@ func (paths DepthFirstPaths) PathTo(v int) []int {
 	if !paths.HasPathTo(v) {
 		return path
 	}
-
-	path = append(path, paths.source)
-	for x := v; x != paths.source; x = paths.edgeTo[x] {
+		
+	for x := v; x != paths.source; x = *paths.edgeTo[x] {
 		path = append(path, x)
 	}
-	//slices.Reverse(path)
+	path = append(path, paths.source)
+	slices.Reverse(path)
 	return path
 }
 
