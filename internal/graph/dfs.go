@@ -28,7 +28,7 @@ func (paths *DepthFirstPaths) dfs(g Graph, v int) {
 		if !paths.marked[w] {
 			paths.edgeTo[w] = &v
 			paths.dfs(g, w)
-		} 
+		}
 	}
 }
 
@@ -44,7 +44,7 @@ func (paths DepthFirstPaths) PathTo(v int) []int {
 	if !paths.HasPathTo(v) {
 		return path
 	}
-		
+
 	for x := v; x != paths.source; x = *paths.edgeTo[x] {
 		path = append(path, x)
 	}

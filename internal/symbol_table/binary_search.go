@@ -1,17 +1,17 @@
 package symbol_table
 
 import (
+	"cmp"
 	"errors"
-	"golang.org/x/exp/constraints"
 )
 
-type BinarySearch[K constraints.Ordered, V any] struct {
+type BinarySearch[K cmp.Ordered, V any] struct {
 	n      int
 	keys   []K
 	values []V
 }
 
-func NewBinarySearch[K constraints.Ordered, V any]() *BinarySearch[K, V] {
+func NewBinarySearch[K cmp.Ordered, V any]() *BinarySearch[K, V] {
 	keys := make([]K, 4096)
 	values := make([]V, 4096)
 	return &BinarySearch[K, V]{keys: keys, values: values, n: 0}

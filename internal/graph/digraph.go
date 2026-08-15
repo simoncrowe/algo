@@ -7,18 +7,20 @@ import (
 	"strings"
 )
 
-type Graph struct {
-	verts int
-	edges int
-	adj   [][]int
+type DirectedGraph struct {
+	verts    int
+	edges    int
+	adj      [][]int
+	inDegree []int
 }
 
-func NewGraph(verts int) Graph {
+func NewDirectedGraph(verts int) DirectedGraph {
 	adj := make([][]int, verts)
-	return Graph{verts: verts, edges: 0, adj: adj}
+	inDegree := make([]int, verts)
+	return DirectedGraph{verts: verts, edges: 0, adj: adj, inDegree: inDegree}
 }
 
-func NewGraphFromStream(lines *bufio.Scanner) Graph {
+func NewDirectedGraphFromStream(lines *bufio.Scanner) DirectedGraph {
 	lines.Scan()
 	vertsCount, err := strconv.ParseInt(lines.Text(), 10, 32)
 	if err != nil {
@@ -33,7 +35,7 @@ func NewGraphFromStream(lines *bufio.Scanner) Graph {
 	}
 	edges := int(edgesCount)
 
-	graph := NewGraph(verts)
+	graph := NewDirectedGraph(verts)
 	for lines.Scan() {
 		edge := strings.Split(lines.Text(), " ")
 		origin, err := strconv.ParseInt(edge[0], 10, 32)
@@ -52,34 +54,39 @@ func NewGraphFromStream(lines *bufio.Scanner) Graph {
 	return graph
 }
 
-func (g Graph) Verts() int {
+func (g DirectedGraph) Verts() int {
 	return g.verts
 }
 
-func (g Graph) Edges() int {
+func (g DirectedGraph) Edges() int {
 	return g.edges
 }
 
-func (g Graph) validateVertex(v int) {
+func (g DirectedGraph) validateVertex(v int) {
 	if v < 0 || v >= g.Verts() {
 		log.Fatalln("Vertex ", v, " is not between 0 and ", g.Verts()-1)
 	}
 }
 
-func (g *Graph) AddEdge(v int, w int) {
+func (g *DirectedGraph) AddEdge(v int, w int) {
 	g.validateVertex(v)
 	g.validateVertex(w)
-	g.edges++
 	g.adj[v] = append(g.adj[v], w)
-	g.adj[w] = append(g.adj[w], v)
+	g.edges++
+	g.inDegree[w]++
 }
 
-func (g Graph) Degree(v int) int {
+func (g DirectedGraph) Degree(v int) int {
 	g.validateVertex(v)
 	return len(g.adj[v])
 }
 
-func (g Graph) Adj(v int) []int {
+func (g DirectedGraph) Adj(v int) []int {
 	g.validateVertex(v)
 	return g.adj[v]
+}
+
+func (g DirectedGraph) InDegree(v int) int {
+	g.validateVertex(v)
+	return g.inDegree[v]
 }
