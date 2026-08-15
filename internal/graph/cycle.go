@@ -19,7 +19,7 @@ func HasDirectedCycle(g DirectedGraph) bool {
 			if !marked[w] {
 				dfs(g, w)
 			} else if onStack[w] {
-				// Back edge: w is on the current recursion stack, so v→w closes a cycle 
+				// Back edge: w is on the current recursion stack, so v→w closes a cycle
 				cycle = true
 			}
 		}

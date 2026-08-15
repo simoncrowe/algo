@@ -2,11 +2,11 @@ package symbol_table
 
 import (
 	"algo/internal/queue"
+	"cmp"
 	"errors"
-	"golang.org/x/exp/constraints"
 )
 
-type TreeNode[K constraints.Ordered, V any] struct {
+type TreeNode[K cmp.Ordered, V any] struct {
 	key   K
 	val   V
 	left  *TreeNode[K, V]
@@ -14,7 +14,7 @@ type TreeNode[K constraints.Ordered, V any] struct {
 	size  int
 }
 
-func newTreeNode[K constraints.Ordered, V any](key K, val V, size int) *TreeNode[K, V] {
+func newTreeNode[K cmp.Ordered, V any](key K, val V, size int) *TreeNode[K, V] {
 	return &TreeNode[K, V]{
 		key:   key,
 		val:   val,
@@ -24,11 +24,11 @@ func newTreeNode[K constraints.Ordered, V any](key K, val V, size int) *TreeNode
 	}
 }
 
-type BinarySearchTree[K constraints.Ordered, V any] struct {
+type BinarySearchTree[K cmp.Ordered, V any] struct {
 	root *TreeNode[K, V]
 }
 
-func NewBinarySearchTree[K constraints.Ordered, V any]() *BinarySearchTree[K, V] {
+func NewBinarySearchTree[K cmp.Ordered, V any]() *BinarySearchTree[K, V] {
 	return &BinarySearchTree[K, V]{root: nil}
 }
 
@@ -36,7 +36,7 @@ func (st BinarySearchTree[K, V]) Size() int {
 	return size(st.root)
 }
 
-func size[K constraints.Ordered, V any](x *TreeNode[K, V]) int {
+func size[K cmp.Ordered, V any](x *TreeNode[K, V]) int {
 	if x == nil {
 		return 0
 	}
@@ -58,7 +58,7 @@ func (st BinarySearchTree[K, V]) Keys() []K {
 	return q.Data()
 }
 
-func keys[K constraints.Ordered, V any](x *TreeNode[K, V], q *queue.Queue[K], lo K, hi K) {
+func keys[K cmp.Ordered, V any](x *TreeNode[K, V], q *queue.Queue[K], lo K, hi K) {
 	if x == nil {
 		return
 	}
@@ -82,7 +82,7 @@ func (st BinarySearchTree[K, V]) Get(key K) (V, error) {
 	return val, nil
 }
 
-func get[K constraints.Ordered, V any](x *TreeNode[K, V], key K) (V, error) {
+func get[K cmp.Ordered, V any](x *TreeNode[K, V], key K) (V, error) {
 	if x == nil {
 		var nothing V
 		return nothing, errors.New("Null node")
@@ -100,7 +100,7 @@ func (st *BinarySearchTree[K, V]) Put(key K, val V) {
 	st.root = put(st.root, key, val)
 }
 
-func put[K constraints.Ordered, V any](x *TreeNode[K, V], key K, val V) *TreeNode[K, V] {
+func put[K cmp.Ordered, V any](x *TreeNode[K, V], key K, val V) *TreeNode[K, V] {
 	if x == nil {
 		return newTreeNode(key, val, 1)
 	}
@@ -124,7 +124,7 @@ func (st *BinarySearchTree[K, V]) Delete(key K) {
 	st.root = delete(st.root, key)
 }
 
-func delete[K constraints.Ordered, V any](x *TreeNode[K, V], key K) *TreeNode[K, V] {
+func delete[K cmp.Ordered, V any](x *TreeNode[K, V], key K) *TreeNode[K, V] {
 	if x == nil {
 		return nil
 	}
@@ -148,7 +148,7 @@ func delete[K constraints.Ordered, V any](x *TreeNode[K, V], key K) *TreeNode[K,
 	return x
 }
 
-func min[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
+func min[K cmp.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.left == nil {
 		return x
 	} else {
@@ -156,7 +156,7 @@ func min[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	}
 }
 
-func max[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
+func max[K cmp.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.right == nil {
 		return x
 	} else {
@@ -164,7 +164,7 @@ func max[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	}
 }
 
-func deleteMin[K constraints.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
+func deleteMin[K cmp.Ordered, V any](x *TreeNode[K, V]) *TreeNode[K, V] {
 	if x.left == nil {
 		return x.right
 	}

@@ -2,14 +2,14 @@ package symbol_table
 
 import (
 	"algo/internal/queue"
+	"cmp"
 	"errors"
-	"golang.org/x/exp/constraints"
 )
 
 const Red = true
 const Black = false
 
-type RedBlackTreeNode[K constraints.Ordered, V any] struct {
+type RedBlackTreeNode[K cmp.Ordered, V any] struct {
 	key    K
 	val    V
 	left   *RedBlackTreeNode[K, V]
@@ -18,14 +18,14 @@ type RedBlackTreeNode[K constraints.Ordered, V any] struct {
 	colour bool
 }
 
-func isRed[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) bool {
+func isRed[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) bool {
 	if n == nil {
 		return false
 	}
 	return n.colour == Red
 }
 
-func rotateLeft[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func rotateLeft[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	x := n.right
 	n.right = x.left
 	x.left = n
@@ -36,7 +36,7 @@ func rotateLeft[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBla
 	return x
 }
 
-func rotateRight[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func rotateRight[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	x := n.left
 	n.left = x.right
 	x.right = n
@@ -47,13 +47,13 @@ func rotateRight[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBl
 	return x
 }
 
-func flipColours[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) {
+func flipColours[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) {
 	n.colour = !n.colour
 	n.left.colour = !n.left.colour
 	n.right.colour = !n.right.colour
 }
 
-func moveRedLeft[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func moveRedLeft[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	flipColours(n)
 	if isRed(n.right.left) {
 		n.right = rotateRight(n.right)
@@ -63,7 +63,7 @@ func moveRedLeft[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBl
 	return n
 }
 
-func moveRedRight[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func moveRedRight[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	flipColours(n)
 	if isRed(n.left.left) {
 		n = rotateRight(n)
@@ -72,7 +72,7 @@ func moveRedRight[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedB
 	return n
 }
 
-func balance[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func balance[K cmp.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	if isRed(n.right) && !isRed(n.left) {
 		n = rotateLeft(n)
 	}
@@ -87,7 +87,7 @@ func balance[K constraints.Ordered, V any](n *RedBlackTreeNode[K, V]) *RedBlackT
 	return n
 }
 
-func newRedBlackTreeNode[K constraints.Ordered, V any](key K, val V, size int, colour bool) *RedBlackTreeNode[K, V] {
+func newRedBlackTreeNode[K cmp.Ordered, V any](key K, val V, size int, colour bool) *RedBlackTreeNode[K, V] {
 	return &RedBlackTreeNode[K, V]{
 		key:    key,
 		val:    val,
@@ -98,11 +98,11 @@ func newRedBlackTreeNode[K constraints.Ordered, V any](key K, val V, size int, c
 	}
 }
 
-type RedBlackBST[K constraints.Ordered, V any] struct {
+type RedBlackBST[K cmp.Ordered, V any] struct {
 	root *RedBlackTreeNode[K, V]
 }
 
-func NewRedBlackBST[K constraints.Ordered, V any]() *RedBlackBST[K, V] {
+func NewRedBlackBST[K cmp.Ordered, V any]() *RedBlackBST[K, V] {
 	return &RedBlackBST[K, V]{root: nil}
 }
 
@@ -110,7 +110,7 @@ func (st RedBlackBST[K, V]) Size() int {
 	return sizeRedBlack(st.root)
 }
 
-func sizeRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) int {
+func sizeRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V]) int {
 	if x == nil {
 		return 0
 	}
@@ -132,7 +132,7 @@ func (st RedBlackBST[K, V]) Keys() []K {
 	return q.Data()
 }
 
-func keysRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V], q *queue.Queue[K], lo K, hi K) {
+func keysRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V], q *queue.Queue[K], lo K, hi K) {
 	if x == nil {
 		return
 	}
@@ -156,7 +156,7 @@ func (st RedBlackBST[K, V]) Get(key K) (V, error) {
 	return val, nil
 }
 
-func getRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V], key K) (V, error) {
+func getRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V], key K) (V, error) {
 	if x == nil {
 		var nothing V
 		return nothing, errors.New("Null node")
@@ -174,7 +174,7 @@ func (st *RedBlackBST[K, V]) Put(key K, val V) {
 	st.root = putRedBlack(st.root, key, val)
 }
 
-func putRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V], key K, val V) *RedBlackTreeNode[K, V] {
+func putRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V], key K, val V) *RedBlackTreeNode[K, V] {
 	if x == nil {
 		return newRedBlackTreeNode(key, val, 1, Red)
 	}
@@ -212,7 +212,7 @@ func (st *RedBlackBST[K, V]) Delete(key K) {
 
 }
 
-func deleteRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V], key K) *RedBlackTreeNode[K, V] {
+func deleteRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V], key K) *RedBlackTreeNode[K, V] {
 	if x == nil {
 		return nil
 	}
@@ -243,7 +243,7 @@ func deleteRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V], key
 	return balance(x)
 }
 
-func minRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func minRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	if x.left == nil {
 		return x
 	} else {
@@ -251,7 +251,7 @@ func minRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBl
 	}
 }
 
-func maxRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func maxRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	if x.right == nil {
 		return x
 	} else {
@@ -259,7 +259,7 @@ func maxRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBl
 	}
 }
 
-func deleteMinRedBlack[K constraints.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
+func deleteMinRedBlack[K cmp.Ordered, V any](x *RedBlackTreeNode[K, V]) *RedBlackTreeNode[K, V] {
 	if x.left == nil {
 		return x.right
 	}
